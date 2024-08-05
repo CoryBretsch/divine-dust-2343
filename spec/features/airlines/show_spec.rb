@@ -1,13 +1,8 @@
 require "rails_helper"
 
-RSpec.describe Airline, type: :model do
-  describe "relationships" do
-    it { should have_many :flights }
-    it { should have_many(:passengers).through(:flights) }
-  end
-
-  describe "instance methods" do 
-    it "can product distinct list of all airline passengers" do 
+RSpec.describe "Airline's Show Page" do 
+  describe "user story 3" do
+    it "can produce a uniq list of all adult passengers on airline" do 
       @airline1 = Airline.create!(name: "Spirit")
       @flight1 = @airline1.flights.create!(number: 735, 
                                         date: "05/10/24", 
@@ -40,7 +35,10 @@ RSpec.describe Airline, type: :model do
       FlightPassenger.create!(flight: @flight3, passenger: @passenger7)
       FlightPassenger.create!(flight: @flight3, passenger: @passenger8)
 
-      expect(@airline1.adult_passenger_list).to eq([@passenger1, @passenger2])
+      visit airline_path(@airline1)
+
+      expect(page).to have_content("Diane")
+      expect(page).to have_content("Laura")
     end
   end
 end
