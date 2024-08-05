@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :flight_passengers, only: [:destroy]
 
-  resources :arlines, only: [:show]
+  resources :airlines, only: [:show]
 
 
 end
