@@ -1,0 +1,6 @@
+<% @flights.each do |flight| %>
+  <p><%= "#{flight.number} - operated by: #{flight.airline_name}" %></p>
+  <% flight.passengers.each do |passenger| %>
+    <p><%= passenger.name %></p>
+  <% end %>
+<% end %>
