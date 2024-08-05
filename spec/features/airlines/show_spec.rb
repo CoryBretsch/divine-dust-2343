@@ -15,7 +15,6 @@ RSpec.describe "Airline's Show Page" do
       @passenger1 = Passenger.create!(name: "Diane", age: 87)
       @passenger2 = Passenger.create!(name: "Laura", age: 63)
       @passenger3 = Passenger.create!(name: "Dora", age: 12)
-      @passenger4 = Passenger.create!(name: "Millie", age: 38)
       @passenger5 = Passenger.create!(name: "Leah", age: 10)
       @passenger6 = Passenger.create!(name: "Humphry", age: 6)
       FlightPassenger.create!(flight: @flight1, passenger: @passenger1)
@@ -37,8 +36,12 @@ RSpec.describe "Airline's Show Page" do
 
       visit airline_path(@airline1)
 
-      expect(page).to have_content("Diane")
-      expect(page).to have_content("Laura")
+      expect(page).to have_content(@passenger1.name)
+      expect(page).to have_content(@passenger2.name)
+
+      expect(page).to_not have_content(@passenger3.name)
+      expect(page).to_not have_content(@passenger5.name)
+      expect(page).to_not have_content(@passenger6.name)
     end
   end
 end
